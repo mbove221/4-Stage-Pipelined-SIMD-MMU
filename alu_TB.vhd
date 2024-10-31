@@ -72,145 +72,74 @@ begin
 --			inp1 <= x"7FFF" & x"FFFF" & x"8000" & x"0000" & x"8000" & x"0040" & x"0000" & x"0001";
 --			instruction <= "10" & "001" & x"----" & "----";
 --			wait for period; 
-		--END OF TB CODE FOR SI MA HIGH WS - RETEST 
+		--END OF TB CODE FOR SI MA HIGH WS - VERIFIED 
 			
 		--START OF TB CODE FOR SI MS LOW WS	(010)
-
+--		  instruction <= "10" & "010" & x"----" & "----";
+--		  inp3 <= x"----" & x"0001" & x"----" & x"0001" & x"----" & x"0002" & x"----"	& x"0020";
+--		  inp2 <= x"----" & x"FFFF" & x"----" & x"0001" & x"----" & x"0002" & x"----" & x"0001";
+--		  inp1 <= x"7FFF" & x"FFFF" & x"8000" & x"0000" & x"8000" & x"0040" & x"0000" & x"0001";
+--		  wait for period;
 		--END OF TB CODE FOR SI MS LOW WS - RETEST 
 			
 		--START OF TB CODE FOR SI MS HIGH WS (011)
---			instruction <= "10" & "011" & x"0000" & "0000";
---			inp1(127) <= '0';
---			inp1(126 downto 0) <= (others =>'1');
---			inp2(127 downto 112) <= std_logic_vector(to_signed(-1, 16));
---			inp2(111 downto 0) <= (others => '0');
---			inp3(127 downto 112) <= std_logic_vector(to_signed(1, 16));
---			inp3(111 downto 0) <= (others => '0');
---			wait for period;
---			inp1(127) <= '1';
---			inp1(126 downto 0) <= (others =>'0');
---			inp2(127 downto 112) <= std_logic_vector(to_signed(1, 16));
---			inp2(111 downto 0) <= (others => '0');
---			inp3(127 downto 112) <= std_logic_vector(to_signed(1, 16));
---			inp3(111 downto 0) <= (others => '0');
---			wait for period;
---			inp1(127 downto 96) <= std_logic_vector(to_signed(-40, 32));
---			inp2(127 downto 112) <= std_logic_vector(to_signed(1, 16));
---			inp2(111 downto 96) <= std_logic_vector(to_signed(69, 16));
---			inp3(127 downto 112) <= std_logic_vector(to_signed(6, 16));
---			inp3(111 downto 96) <= std_logic_vector(to_signed(420,16));
---			wait for period;
+		 -- instruction <= "10" & "011" & x"----" & "----";
+--		  inp3 <= x"0001" & x"----" & x"0001" & x"----" & x"0002" & x"----"	& x"0020" & x"----";
+--		  inp2 <= x"FFFF" & x"----" & x"0001" & x"----" & x"0002" & x"----" & x"0001" & x"----";
+--		  inp1 <= x"7FFF" & x"FFFF" & x"8000" & x"0000" & x"8000" & x"0040" & x"0000" & x"0001";
+--		  wait for period;
 		--END OF TB CODE FOR SI MS HIGH WS - RETEST
-			
+
 		--START OF TB CODE FOR SLI MA LOW WS (100)
---			inp1(127) <= '1';
---			inp1(126 downto 0) <= (others =>'0');
---			inp2(127 downto 64) <= std_logic_vector(to_signed(1, 64));
---			inp2(63 downto 0) <= (others => '0');
---			inp3(127 downto 64) <= std_logic_vector(to_signed(-1, 64));
---			inp3(63 downto 0) <= (others => '0');
---			instruction <= "10" & "100" & x"0000" & "0000";
+--		    inp3 <= x"----" & x"----" & x"FFFF" & x"0000" & x"----" & x"----" & x"F000"	& x"0000";
+--			inp2 <= x"----" & x"----" & x"8000" & x"0000" & x"----" & x"----" & x"0000" & x"0001";
+--			inp1 <= x"7FFF" & x"FFFF" & x"FFFF" & x"0000" & x"8000" & x"0000" & x"0000" & x"0001";
+--			instruction <= "10" & "100" & x"----" & "----";
 --			wait for period;
---			inp1(127) <= '0';
---			inp1(126 downto 0) <= (others =>'1');
---			inp2(127 downto 64) <= std_logic_vector(to_signed(1, 64));
---			inp2(95 downto 0) <= (others => '0');
---			inp3(127 downto 64) <= std_logic_vector(to_signed(1, 64));
---			inp3(63 downto 0) <= (others => '0');
---			wait for period;
---			inp1(127 downto 64) <= std_logic_vector(to_signed(-40, 64));
---			inp2(127 downto 96) <= std_logic_vector(to_signed(1024, 32));
---			inp2(95 downto 64) <= std_logic_vector(to_signed(1, 32));
---			inp3(127 downto 96) <= std_logic_vector(to_signed(420, 32)); 
---			inp3(95 downto 64) <= std_logic_vector(to_signed(-6, 32)); 
+--			instruction <= "10" & "100" & x"----" & "----";
+--			inp3 <= x"----" & x"----" & x"0020" & x"0000" & x"----" & x"----" & x"0220"	& x"0000";
+--			inp2 <= x"----" & x"----" & x"0000" & x"0002" & x"----" & x"----" & x"0000" & x"0001";
+--			inp1 <= x"7000" & x"0000" & x"0000" & x"0000" & x"8000" & x"0000" & x"0000" & x"FFFF";
 --			wait for period;
 		--END OF TB CODE FOR SLI MA LOW WS - RETEST  
 		
 		--START OF TB CODE FOR SLI MA HIGH WS (101)
---			inp1(127) <= '1';
---			inp1(126 downto 0) <= (others =>'0');
---			inp2(127 downto 96) <= std_logic_vector(to_signed(1, 32));
---			inp2(95 downto 64) <= std_logic_vector(to_signed(-69420, 32));
---			inp2(63 downto 0) <= std_logic_vector(to_signed(0, 64));
---			inp3(127 downto 96) <= std_logic_vector(to_signed(-1, 32));
---			inp3(95 downto 64) <= std_logic_vector(to_signed(-69420, 32));
---			inp3(63 downto 0) <= std_logic_vector(to_signed(0, 64));
---			instruction <= "10" & "101" & x"0000" & "0000";
+--			inp3 <= x"FFFF" & x"0000" & x"----" & x"----" & x"F000"	& x"0000" & x"----" & x"----";
+--			inp2 <= x"8000" & x"0000" & x"----" & x"----" & x"0000" & x"0001" & x"----" & x"----";
+--			inp1 <= x"7FFF" & x"FFFF" & x"FFFF" & x"0000" & x"8000" & x"0000" & x"0000" & x"0001";
+--			instruction <= "10" & "101" & x"----" & "----";
 --			wait for period;
---			inp1(127) <= '0';
---			inp1(126 downto 0) <= (others =>'1');
---			inp2(127 downto 96) <= std_logic_vector(to_signed(1, 32));
---			inp2(95 downto 64) <= std_logic_vector(to_signed(-69420, 32));
---			inp2(63 downto 0) <= std_logic_vector(to_signed(0, 64));
---			inp3(127 downto 96) <= std_logic_vector(to_signed(1, 32));
---			inp3(95 downto 64) <= std_logic_vector(to_signed(-69420, 32));
---			inp3(63 downto 0) <= std_logic_vector(to_signed(0, 64));
---			wait for period;
---			inp1(127 downto 64) <= std_logic_vector(to_signed(-40, 64));
---			inp1(63 downto 0) <= (others => '0');
---			inp2(127 downto 96) <= std_logic_vector(to_signed(1, 32));
---			inp2(95 downto 64) <= std_logic_vector(to_signed(-69420, 32));
---			inp2(63 downto 0) <= std_logic_vector(to_signed(0, 64));
---			inp3(127 downto 96) <= std_logic_vector(to_signed(-6, 32)); 
---			inp3(95 downto 64) <= std_logic_vector(to_signed(5921, 32));
---			inp3(63 downto 0) <= (others => '0');
+--			instruction <= "10" & "101" & x"----" & "----";
+--			inp3 <= x"0020" & x"0000" & x"----" & x"----" & x"0220"	& x"0000" & x"----" & x"----";
+--			inp2 <= x"0000" & x"0002" & x"----" & x"----" & x"0000" & x"0001" & x"----" & x"----";
+--			inp1 <= x"7000" & x"0000" & x"0000" & x"0000" & x"8000" & x"0000" & x"0000" & x"FFFF";
 --			wait for period;
 		--END OF TB CODE FOR SLI MA HIGH WS - RETEST
 			
 		--START OF TB CODE FOR SLI MS LOW WS (110)
---			inp1(127) <= '1';
---			inp1(126 downto 0) <= (others =>'0');
---			inp2(127 downto 64) <= std_logic_vector(to_signed(1, 64));
---			inp2(63 downto 0) <= (others => '0');
---			inp3(127 downto 64) <= std_logic_vector(to_signed(1, 64));
---			inp3(63 downto 0) <= (others => '0');
---			instruction <= "10" & "110" & x"0000" & "0000";
+--			instruction <= "10" & "110" & x"----" & "----";
+--			inp3 <= x"----" & x"----" & x"0030" & x"0001" & x"----" & x"----" &  x"0FFF" & x"0020";
+--			inp2 <= x"----" & x"----" & x"8020" & x"0001" & x"----" & x"----" & x"3210" & x"0001";
+--			inp1 <= x"7FFF" & x"FFFF" & x"FFFF" & x"F123" & x"8000" & x"0040" & x"0000" & x"0001";
 --			wait for period;
---			inp1(127) <= '0';
---			inp1(126 downto 0) <= (others =>'1');
---			inp2(127 downto 64) <= std_logic_vector(to_signed(1, 64));
---			inp2(63 downto 0) <= (others => '0');
---			inp3(127 downto 64) <= std_logic_vector(to_signed(1, 64));
---			inp3(63 downto 0) <= (others => '0');
---			wait for period;
---			inp1(127 downto 64) <= std_logic_vector(to_signed(-40, 64));
---			inp2(127 downto 96) <= std_logic_vector(to_signed(1024, 32));
---			inp2(95 downto 64) <= std_logic_vector(to_signed(1, 32));
---			inp2(63 downto 0) <= (others => '0');
---			inp3(127 downto 96) <= std_logic_vector(to_signed(420, 32)); 
---			inp3(95 downto 64) <= std_logic_vector(to_signed(6, 32));
---			inp3(63 downto 0) <= (others => '0');
+--			instruction <= "10" & "110" & x"----" & "----";
+--			inp3 <= x"----" & x"----" & x"0020" & x"0000" & x"----" & x"----" & x"0000"	& x"4321";
+--			inp2 <= x"----" & x"----" & x"0000" & x"0002" & x"----" & x"----" & x"0000" & x"0002";
+--			inp1 <= x"7000" & x"0000" & x"0060" & x"0CE0" & x"C000" & x"0000" & x"0000" & x"FFFF";
 --			wait for period;
 		--END OF TB CODE FOR SLI MS LOW WS - RETEST
 			
 		--START OF TB CODE FOR SLI MS HIGH WS (111)
---			inp1(127) <= '1';
---			inp1(126 downto 0) <= (others =>'0');
---			inp2(127 downto 96) <= std_logic_vector(to_signed(1, 32));
---			inp2(95 downto 64) <= std_logic_vector(to_signed(609, 32));
---			inp2(63 downto 0) <= (others => '0');
---			inp3(127 downto 96) <= std_logic_vector(to_signed(1, 32));
---			inp3(95 downto 64) <= std_logic_vector(to_signed(402, 32));
---			inp3(63 downto 0) <= (others => '0');
---			instruction <= "10" & "111" & x"0000" & "0000";
+--			instruction <= "10" & "111" & x"----" & "----";
+--			inp3 <= x"0030" & x"0001" & x"----" & x"----" &  x"0FFF" & x"0020" & x"----" & x"----";
+--			inp2 <= x"8020" & x"0001" & x"----" & x"----" & x"3210" & x"0001" & x"----" & x"----";
+--			inp1 <= x"7FFF" & x"FFFF" & x"FFFF" & x"F123" & x"8000" & x"0040" & x"0000" & x"0001";			
 --			wait for period;
---			inp1(127) <= '0';
---			inp1(126 downto 0) <= (others =>'1');
---			inp2(127 downto 96) <= std_logic_vector(to_signed(1, 32));
---			inp2(95 downto 64) <= std_logic_vector(to_signed(609, 32));
---			inp2(63 downto 0) <= (others => '0');
---			inp3(127 downto 96) <= std_logic_vector(to_signed(-1, 32));
---			inp3(95 downto 64) <= std_logic_vector(to_signed(402, 32));
---			inp3(63 downto 0) <= (others => '0');
---			wait for period;
---			inp1(127 downto 64) <= std_logic_vector(to_signed(-40, 64));
---			inp2(127 downto 96) <= std_logic_vector(to_signed(1, 32));
---			inp2(95 downto 64) <= std_logic_vector(to_signed(1024, 32));
---			inp2(63 downto 0) <= (others => '0');
---			inp3(127 downto 96) <= std_logic_vector(to_signed(6, 32)); 
---			inp3(95 downto 64) <= std_logic_vector(to_signed(982, 32));
---			inp3(63 downto 0) <= (others => '0');
---			wait for period;
+			instruction <= "10" & "111" & x"----" & "----";
+			inp3 <= x"0020" & x"0000" & x"----" & x"----" & x"0000"	& x"4321" & x"----" & x"----";
+			inp2 <= x"0000" & x"0002" & x"----" & x"----" & x"0000" & x"0002" & x"----" & x"----";
+			inp1 <= x"7000" & x"0000" & x"0060" & x"0CE0" & x"C000" & x"0000" & x"0000" & x"FFFF";
+			wait for period;
 		--END OF TB CODE FOR SLI MS HIGH WS - RETEST
 --END OF TEST CODE FOR SIGNED MA AND MS - ALL TESTS PASSED (RETEST)
 	
@@ -339,10 +268,10 @@ begin
 		--END OF TB CODE FOR SUBTRACT FROM WORD UNSIGNED - NEEDS VERIFICATION - CHECK IF SATURATION OR NORMAL UNSIGNED
 		
 		--START OF TB CODE FOR SUBTRACT FROM HALFWORD SATURATED (1111)
-			instruction <= "11" & "----1111" & "-----" & "-----" & "-----";
-			inp1 <= x"0001" & x"FFFF" & x"0010" & x"FFFF" & x"FFFF" & x"1111" & x"8001" & x"FFFF";
-			inp2 <= x"8000" & x"7FFF" & x"FFFE" & x"8001" & x"8010" & x"3210" & x"4321" & x"4321";
-			wait for period;
+			--instruction <= "11" & "----1111" & "-----" & "-----" & "-----";
+--			inp1 <= x"0001" & x"FFFF" & x"0010" & x"FFFF" & x"FFFF" & x"1111" & x"8001" & x"FFFF";
+--			inp2 <= x"8000" & x"7FFF" & x"FFFE" & x"8001" & x"8010" & x"3210" & x"4321" & x"4321";
+--			wait for period;
 		--END OF TB CODE FOR SUBTRACT FROM HALFWORD SATURATED - VERIFIED
 		std.env.finish;	
 		end process;

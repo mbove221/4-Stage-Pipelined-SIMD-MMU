@@ -58,12 +58,15 @@ begin
 	variable inp1_var, inp2_var, inp3_var : std_logic_vector(127 downto 0);
 	variable outp_var : std_logic_vector(127 downto 0);
 	variable overflow_32 : std_logic_vector(31 downto 0);
+	variable overflow_33 : signed(32 downto 0);
 	variable overflow_64 : std_logic_vector(63 downto 0);
+	variable overflow_65 : signed(64 downto 0);
 	variable shift_amt : integer;
 	variable ones_count : integer;
 	variable leading_zeros : integer;
 	variable unsigned_sum : unsigned(32 downto 0);
 	variable unsigned_diff : unsigned(32 downto 0);
+	
 	
 	
 	variable upper_4, lower_4 : integer;
@@ -162,13 +165,13 @@ begin
 							end if;
 						end loop;
 					when "100" => --Signed Long Integer Multiply-Add Low with Saturation
-						for i in 0 to 1 loop
+						for i in 1 downto 0 loop
 							upper_32 := i*64 + 31;
 							lower_32 := i*64;
 							upper_64 := i*64 + 63;
 							lower_64 := i*64;
 							outp_var(upper_64 downto lower_64) := std_logic_vector(signed(inp2_var(upper_32 downto lower_32)) * signed(inp3_var(upper_32 downto lower_32)));
-							if(outp_var (upper_64) = inp1_var(upper_64)) then
+							if(outp_var(upper_64) = inp1_var(upper_64)) then
 								overflow_64 := std_logic_vector(signed(inp1_var(upper_64 downto lower_64)) + signed(outp_var(upper_64 downto lower_64)));
 								if(overflow_64(63) /= inp1_var(upper_64)) then --if 2 negatives = positive or 2 positives = negative (possible overflow)
 									outp(upper_64) <= not overflow_64(63);
@@ -199,16 +202,14 @@ begin
 								outp(upper_64 downto lower_64) <= std_logic_vector(signed(outp_var(upper_64 downto lower_64)) + signed(inp1_var(upper_64 downto lower_64)));
 							end if;
 						end loop;
-					when "110" => --Signed Long Integer Multiply-Subtract Low with Saturation
+					when "110" => --Signed Long Integer Multiply-Subtract Low with Saturation 
 						for i in 0 to 1 loop
 							upper_32 := i*64 + 31;
 							lower_32 := i*64;
 							upper_64 := i*64 + 63;
 							lower_64 := i*64;
 							outp_var(upper_64 downto lower_64) := std_logic_vector(signed(inp2_var(upper_32 downto lower_32)) * signed(inp3_var(upper_32 downto lower_32)));
-							product := to_integer(signed(outp_var(upper_64 downto lower_64)));
 							if(outp_var (upper_64) /= inp1_var(upper_64)) then
-								outp <= (others => '1');
 								overflow_64 := std_logic_vector(signed(inp1_var(upper_64 downto lower_64)) - signed(outp_var(upper_64 downto lower_64)));
 								if(overflow_64(63) /= inp1_var(upper_64)) then --if 1 negatives - 1 positive or 1 positives - 1 negative (possible overflow)
 									outp(upper_64) <= not overflow_64(63);
@@ -229,7 +230,6 @@ begin
 							outp_var(upper_64 downto lower_64) := std_logic_vector(signed(inp2_var(upper_32 downto lower_32)) * signed(inp3_var(upper_32 downto lower_32)));
 							product := to_integer(signed(outp_var(upper_64 downto lower_64)));
 							if(outp_var (upper_64) /= inp1_var(upper_64)) then
-								outp <= (others => '1');
 								overflow_64 := std_logic_vector(signed(inp1_var(upper_64 downto lower_64)) - signed(outp_var(upper_64 downto lower_64)));
 								if(overflow_64(63) /= inp1_var(upper_64)) then --if 1 negatives - 1 positive or 1 positives - 1 negative (possible overflow)
 									outp(upper_64) <= not overflow_64(63);
