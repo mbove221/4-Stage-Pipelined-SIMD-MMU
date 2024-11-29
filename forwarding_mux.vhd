@@ -27,8 +27,10 @@ use ieee.std_logic_1164.all;
 
 entity forwarding_mux is
 	port(
-	fwd_reg1, fwd_reg2, fwd_reg3 : in std_logic
-	
+	fwd_reg1, fwd_reg2, fwd_reg3 : in std_logic;
+	fwd_reg : in std_logic_vector(127 downto 0);
+	inp_reg1, inp_reg2, inp_reg3 : in std_logic_vector(127 downto 0);
+	outp_reg1, outp_reg2, outp_reg3 : out std_logic_vector(127 downto 0)
 	);
 end forwarding_mux;
 
@@ -36,7 +38,19 @@ end forwarding_mux;
 
 architecture behavior of forwarding_mux is
 begin
-
-	-- Enter your statements here --
-
+	forwarding : process(all)
+		begin
+		outp_reg1 <= inp_reg1;
+		outp_reg2 <= inp_reg2;
+		outp_reg3 <= inp_reg3;
+		if(fwd_reg1 = '1') then
+			outp_reg1 <= fwd_reg;
+		end if;
+		if(fwd_reg2 = '1') then
+			outp_reg2 <= fwd_reg;
+		end if;
+		if(fwd_reg3 = '1') then
+			outp_reg3 <= fwd_reg;
+		end if;
+   end process;
 end behavior;
