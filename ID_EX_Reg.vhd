@@ -28,10 +28,10 @@ use ieee.numeric_std.all;
 
 entity ID_EX_Reg is
 	port(
-	reg1_in, reg2_in, reg3_in, reg_dest_in : in std_logic_vector(127 downto 0);
+	reg1_in, reg2_in, reg3_in : in std_logic_vector(127 downto 0);
 	instruction_in : in std_logic_vector(24 downto 0);
 	clk : in std_logic;
-	reg1_out, reg2_out, reg3_out, reg_dest_out : out std_logic_vector(127 downto 0);
+	reg1_out, reg2_out, reg3_out : out std_logic_vector(127 downto 0);
 	instruction_out : out std_logic_vector(24 downto 0)
 	);
 end ID_EX_Reg;

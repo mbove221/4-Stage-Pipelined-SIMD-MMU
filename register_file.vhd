@@ -45,7 +45,7 @@ architecture dataflow of reg_file is
 type registers is array(0 to 31) of std_logic_vector(127 downto 0);
 signal register_file : registers := (others => (others => '0'));
 begin
-	write : process(write_en) 
+	write : process(write_en, write_reg, write_data) 
 	begin
 		if write_en = '1' then
 			register_file(to_integer(unsigned(write_reg))) <= write_data;

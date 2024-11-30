@@ -27,9 +27,10 @@ use ieee.std_logic_1164.all;
 
 entity EX_WB_Reg is
 	port(
-	alu_input : in std_logic_vector(127 downto 0);
+	alu_out_wb_in : in std_logic_vector(127 downto 0);
 	instruction_in : in std_logic_vector (24 downto 0);
-	reg_dst : out std_logic_vector(4 downto 0);
+	clk : in std_logic;
+	reg_dest : out std_logic_vector(4 downto 0);
 	data_output : out std_logic_vector(127 downto 0);
 	write_en : out std_logic;
 	instruction_out : out std_logic_vector(24 downto 0)
@@ -40,7 +41,16 @@ end EX_WB_Reg;
 
 architecture behavior of EX_WB_Reg is
 begin
-
-	-- Enter your statements here --
-
+	write_back : process(clk)
+	begin
+		write_en <= '0';
+		if(rising_edge(clk)) then
+			instruction_out <= instruction_in;
+			reg_dest <= instruction_in(4 downto 0);
+			data_output <= alu_out_wb_in;
+		end if;
+		if((instruction_in(24) = '0' or instruction_in(24 downto 23) = "10") or ((instruction_in(24 downto 23) = "11") and instruction_in(18 downto 15) /= "0000")) then
+			write_en <= '1';
+		end if;
+	end process;
 end behavior;

@@ -43,6 +43,7 @@ architecture behavioral of instruction_buffer is
 type instruction_file_type is array(0 to 63) of std_logic_vector(24 downto 0);
 file fin : text;	 
 signal instruction_file : instruction_file_type := (others => (others => '0'));
+signal i_sig : integer;
 begin	
 	read_file : process(load_buffer)
 	variable file_vectors : line;
@@ -52,20 +53,26 @@ begin
 	variable instruction_file_var : std_logic_vector(24 downto 0);
 	begin
 		if(load_buffer) then
-			file_open(fin, "file_vectors.txt", read_mode);
+			file_open(fin, "test_vectors.txt", read_mode);
 			while not endfile(fin) loop
 				readline(fin, fin_line);
 				read(fin_line, instruction_file_var); --store fin_line and store it in instruction_file(i)
 				instruction_file(i) <= instruction_file_var;
 				i := i + 1;
-			end loop; 
+			end loop;
+			i_sig <= i;
 			file_close(fin);
 		end if;
 	end process;
 	
 	fetch_instr : process(PC)
 	begin
-		output <= instruction_file(to_integer(unsigned(PC)));
+		if(to_integer(unsigned(PC)) < i_sig) then
+			output <= instruction_file(to_integer(unsigned(PC)));
+		else
+			output <= "11" & "00000000000000000000000";
+		end if;
+		
 	end process;
 	
 	

@@ -28,7 +28,7 @@ use ieee.numeric_std.all;
 
 entity program_counter is 
 	port(			  
-	reset_n : std_logic;
+	reset_n : in std_logic;
 	clk : in std_logic;
 	PC : out std_logic_vector(5 downto 0)
 	);
@@ -38,13 +38,19 @@ end program_counter;
 
 architecture behavior of program_counter is
 begin
+	
 	process(clk, reset_n)
+	variable PC_var : integer := 0;
 	begin
 		if(reset_n = '0') then
-			PC <= (others => '0');
-		elsif(rising_edge(clk)) then	 
-			PC <= std_logic_vector(to_unsigned(to_integer(unsigned(PC)) + 1, 6));
+			PC_var := 0;
+			PC <= std_logic_vector(to_unsigned(PC_var, 6));
+		elsif(rising_edge(clk)) then
+			PC_var := PC_var + 1;
+			PC <= std_logic_vector(to_unsigned(PC_var, 6));
 		end if;
+		
 	end process;
+	
 
 end behavior;

@@ -39,7 +39,7 @@ end forwarding_mux;
 architecture behavior of forwarding_mux is
 begin
 	forwarding : process(all)
-		begin
+	begin
 		outp_reg1 <= inp_reg1;
 		outp_reg2 <= inp_reg2;
 		outp_reg3 <= inp_reg3;

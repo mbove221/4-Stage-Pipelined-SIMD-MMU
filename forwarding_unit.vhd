@@ -36,11 +36,11 @@ end forwarding_unit;
 
 architecture behavior of forwarding_unit is
 begin
-	fwd_reg1 <= '0';
-	fwd_reg2 <= '0';
-	fwd_reg3 <= '0';
 	compare : process(all)
 	begin
+		fwd_reg1 <= '0';
+		fwd_reg2 <= '0';
+		fwd_reg3 <= '0';
 		case instruction_ex(24) is
 			when '0' => 
 				if(instruction_ex(4 downto 0) = instruction_wb(4 downto 0)) then
