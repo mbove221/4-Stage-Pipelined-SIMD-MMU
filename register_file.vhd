@@ -57,10 +57,11 @@ begin
 		reg_dest <= register_file(to_integer(unsigned(instruction(4 downto 0))));
 		reg1 <= register_file(to_integer(unsigned(instruction(9 downto 5))));
 		reg2 <= register_file(to_integer(unsigned(instruction(14 downto 10))));
-		if(instruction(23) = '0') then
-			reg3 <= register_file(to_integer(unsigned(instruction(19 downto 15))));
-		end if;
+		reg3 <= register_file(to_integer(unsigned(instruction(19 downto 15))));
 		
+		if(instruction(24) = '0') then
+			reg1 <= register_file(to_integer(unsigned(instruction(4 downto 0))));
+		end if;
 	end process;
 	
 
