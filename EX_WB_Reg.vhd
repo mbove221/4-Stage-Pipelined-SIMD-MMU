@@ -48,9 +48,10 @@ begin
 			instruction_out <= instruction_in;
 			reg_dest <= instruction_in(4 downto 0);
 			data_output <= alu_out_wb_in;
+			if((instruction_in(24) = '0' or instruction_in(24 downto 23) = "10") or ((instruction_in(24 downto 23) = "11") and instruction_in(18 downto 15) /= "0000")) then
+				write_en <= '1';
+			end if;
 		end if;
-		if((instruction_in(24) = '0' or instruction_in(24 downto 23) = "10") or ((instruction_in(24 downto 23) = "11") and instruction_in(18 downto 15) /= "0000")) then
-			write_en <= '1';
-		end if;
+		
 	end process;
 end behavior;
