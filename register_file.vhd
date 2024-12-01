@@ -28,18 +28,22 @@ use ieee.numeric_std.all;
 
 entity reg_file is
 	port(
+	--For reading entire register file at end
+	is_end : in std_logic;
+	read_reg : in std_logic_vector(4 downto 0);
+	out_end_reg : out std_logic_vector(127 downto 0);
+	--For normal use
 	instruction : in std_logic_vector(24 downto 0);
 	write_en : in std_logic;
 	write_reg : in std_logic_vector(4 downto 0);
 	write_data : in std_logic_vector(127 downto 0);
-	reg1, reg2, reg3, reg_dest : out std_logic_vector(127 downto 0)
+	reg1, reg2, reg3 : out std_logic_vector(127 downto 0)
 	);
 	
 	
 	
 end reg_file;
 
---}} End of automatically maintained section
 
 architecture dataflow of reg_file is
 type registers is array(0 to 31) of std_logic_vector(127 downto 0);
@@ -54,7 +58,6 @@ begin
 	
 	read : process(all)
 	begin
-		reg_dest <= register_file(to_integer(unsigned(instruction(4 downto 0))));
 		reg1 <= register_file(to_integer(unsigned(instruction(9 downto 5))));
 		reg2 <= register_file(to_integer(unsigned(instruction(14 downto 10))));
 		reg3 <= register_file(to_integer(unsigned(instruction(19 downto 15))));
@@ -64,7 +67,12 @@ begin
 		end if;
 	end process;
 	
-
+	read_all : process(is_end, read_reg)
+	begin
+		if(is_end = '1') then
+			out_end_reg <= register_file(to_integer(unsigned(read_reg(4 downto 0))));
+		end if;
+	end process;
 	-- Enter your statements here --
 
 end dataflow;

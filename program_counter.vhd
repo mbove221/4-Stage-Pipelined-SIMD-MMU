@@ -47,7 +47,9 @@ begin
 			PC <= std_logic_vector(to_unsigned(PC_var, 6));
 		elsif(rising_edge(clk)) then
 			PC_var := PC_var + 1;
-			PC <= std_logic_vector(to_unsigned(PC_var, 6));
+			if(PC_var <= 63) then
+				PC <= std_logic_vector(to_unsigned(PC_var, 6));
+			end if;
 		end if;
 		
 	end process;

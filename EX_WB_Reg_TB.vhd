@@ -48,17 +48,17 @@ begin
 		clk <= '0';
 		alu_out_wb_in <= x"5915" & x"1987" & x"1741" & x"9811" & x"1234" & x"1234" & x"2861" & x"6181";
 		instruction_in <= "0111111111111111111111110"; --write_en should generate
-		wait for period;
+		wait for period/2;
 		clk <= '1';
-		wait for period;
+		wait for period/2;
 		clk <= '0';
 		instruction_in <= "1100000000000000000000000"; --write_en should not generate
 		alu_out_wb_in <= x"8761" & x"6151" & x"7141" & x"1865" & x"1247" & x"5811" & x"4716" & x"4681";
-		wait for period;
+		wait for period/2;
 		clk <= '1';
-		wait for period;
+		wait for period/2;
 		clk <= '0';
-		wait for period;
+		wait for period/2;
 		std.env.finish;
 	end process;
 	-- Enter your statements here --

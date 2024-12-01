@@ -13,7 +13,7 @@ signal instruction : std_logic_vector(24 downto 0);
 signal write_en : std_logic;
 signal write_reg : std_logic_vector(4 downto 0);
 signal write_data : std_logic_vector(127 downto 0);
-signal reg1, reg2, reg3, reg_dest : std_logic_vector(127 downto 0);
+signal reg1, reg2, reg3 : std_logic_vector(127 downto 0);
 
 -- Define test_vector with all relevant fields
 type test_vector is record
@@ -24,7 +24,6 @@ type test_vector is record
 	reg1 : std_logic_vector(127 downto 0);
 	reg2 : std_logic_vector(127 downto 0);
 	reg3 : std_logic_vector(127 downto 0);
-	reg_dest : std_logic_vector(127 downto 0);
 end record;
 
 -- Array of test_vectors for test cases
@@ -37,8 +36,7 @@ constant test_vectors : test_vector_array := (
         x"01234567899876543210123456789987", 	-- write_data
         x"01234567899876543210123456789987", 	-- reg1 (expected value)
         (others => '0'),           			-- reg2
-        (others => '0'),            			-- reg3
-        x"01234567899876543210123456789987"   -- reg_dest (expected value)
+        (others => '0')            			-- reg3
     ),
     (
         "0111111111111111111111111", 		-- instruction li $31, 7, 65535
@@ -47,8 +45,7 @@ constant test_vectors : test_vector_array := (
         x"23456789987654321012345678998765", 	-- write_data
         (others => '0'),            			-- reg1
         (others => '0'),           	 		-- reg2
-        (others => '0'),            			-- reg3
-        (others => '0')             			-- reg_dest (expected value)
+        (others => '0')            			-- reg3
     ),
 	(
 	   "1100001011111100000100100", 		-- instruction or $4, $1, $30
@@ -57,8 +54,7 @@ constant test_vectors : test_vector_array := (
         x"23456789987654321012345678998765", 	-- write_data
         (others => '0'),  					-- reg1
         x"01234567899876543210123456789987",  -- reg2
-        (others => '0'),            			-- reg3
-        (others => '0')             			-- reg_dest (expected value)
+        (others => '0')            			-- reg3
 	),
 	(
 	   "1000011110000001111110100", 		-- instruction simals $20, $31, $0, $30
@@ -67,21 +63,23 @@ constant test_vectors : test_vector_array := (
         x"56789987654321012345678998765432", 	-- write_data
         x"23456789987654321012345678998765",  -- reg1
         (others => '0'),  					-- reg2
-        x"01234567899876543210123456789987",  -- reg3
-        (others => '0')   					-- reg_dest (expected value)
+        x"01234567899876543210123456789987"  -- reg3
 	)
 );
 
 begin
     UUT : entity reg_file port map (
+		is_end => '0',
+		read_reg => (others => '0'),
+		--ignore out_end_reg
+		out_end_reg => write_data,
         instruction => instruction,
         write_en => write_en,
         write_reg => write_reg,
         write_data => write_data,
         reg1 => reg1,
         reg2 => reg2,
-        reg3 => reg3,
-        reg_dest => reg_dest
+        reg3 => reg3
     );
 
     tb : process
@@ -102,9 +100,6 @@ begin
 		   severity error;
 		   assert reg3 = test_vectors(i).reg3 
 		   report "Error with reg3. Should be: " & to_string(test_vectors(i).reg3) & " But is: " & to_string(reg3) 
-		   severity error;
-		   assert reg_dest = test_vectors(i).reg_dest 
-		   report "Error with reg_dest. Should be: " & to_string(test_vectors(i).reg_dest) & " But is: " & to_string(reg_dest) 
 		   severity error;
         end loop;
 
