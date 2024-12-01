@@ -59,7 +59,7 @@ begin
 					end if;
 				elsif (instruction_ex(23) = '1') then
 					if (instruction_ex(14 downto 10) = instruction_wb(4 downto 0) and (instruction_ex(18 downto 15) /= "0000" and instruction_wb(18 downto 15) /= "0000")) then
-						if((instruction_ex(18 downto 15) /= "0011") and (instruction_ex(18 downto 15) /= "1100") and (instruction_ex(18 downto 15) /= "0110")) then
+						if((instruction_ex(18 downto 15) /= "0011") and (instruction_ex(18 downto 15) /= "1100") and (instruction_ex(18 downto 15) /= "0110") and (instruction_ex(18 downto 15) /= "1010")) then
 							fwd_reg2 <= '1';
 						end if;
 					end if;
