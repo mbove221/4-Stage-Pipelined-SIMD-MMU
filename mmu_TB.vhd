@@ -116,16 +116,8 @@ begin
 					write(line_buffer, string'("Register 1 (" & integer'image(to_integer(unsigned(id_instr(9 downto 5)))) & "): " & to_hstring(id_reg1)));
 					writeline(output_file, line_buffer);
 				end if;
-				if(id_instr(24) = '0') then
-					write(line_buffer, string'("REG 2 DOESN'T MATTER!!!!!"));
-					writeline(output_file, line_buffer);
-				end if;
 				write(line_buffer, string'("Register 2: (" & integer'image(to_integer(unsigned(id_instr(14 downto 10)))) & "): " & to_hstring(id_reg2)));
 				writeline(output_file, line_buffer);
-				if(id_instr(24 downto 23) /= "10") then
-					write(line_buffer, string'("REG 3 DOESN'T MATTER!!!!!"));
-					writeline(output_file, line_buffer);
-				end if;
 				write(line_buffer, string'("Register 3: (" & integer'image(to_integer(unsigned(id_instr(19 downto 15)))) & "): " & to_hstring(id_reg3)));
 				writeline(output_file, line_buffer);
 				
@@ -160,16 +152,8 @@ begin
 				writeline(output_file, line_buffer);
 				write(line_buffer, string'("ALU Input Register 2: " & to_hstring(alu_inp2)));
 				writeline(output_file, line_buffer); 
-				if(ex_instr(24) = '0') then
-					write(line_buffer, string'("REG 2 DOESN'T MATTER!!!!!"));
-					writeline(output_file, line_buffer);
-				end if;
 				write(line_buffer, string'("ALU Input Register 3: " & to_hstring(alu_inp3)));
 				writeline(output_file, line_buffer);
-				if(ex_instr(24 downto 23) /= "10") then
-					write(line_buffer, string'("REG 3 DOESN'T MATTER!!!!!"));
-					writeline(output_file, line_buffer);
-				end if;
 				
 				write(line_buffer, string'(" "));
 				writeline(output_file, line_buffer);
